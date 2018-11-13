@@ -13,10 +13,13 @@ class FruitList extends Component {
       }
    }
    onMoveUp = (key) => {
+      if(key === 0) return;
       console.log(key, 'onMoveUp ---------->')
    }
 
    onMoveDown = (key) => {
+      const { items } = this.props;
+      if(key === items.length) return;
       console.log(key, 'onMoveDown ---------->')
    }
 
