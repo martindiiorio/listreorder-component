@@ -12,7 +12,7 @@ class App extends Component {
            {'id': 2, 'name': 'lemon','bgColor' : '#fee599'},
            {'id': 3, 'name': 'strawberry', 'bgColor': '#e06666'},
            {'id': 4, 'name': 'apple', 'bgColor' : '#b6d7a7'}
-         ]         
+         ]
       }
    }
    render() {

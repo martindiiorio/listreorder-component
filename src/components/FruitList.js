@@ -3,39 +3,36 @@ import React, { Component } from 'react';
 class FruitList extends Component {
    constructor(props) {
       super(props);
-      this.onMoveUp = this.onMoveUp.bind(this);
-      this.onMoveDown = this.onMoveDown.bind(this);
-
-
-      
+      this.state = {
+         items : [
+           {'id': 1, 'name': 'orange', 'bgColor': '#f9cb9c'},
+           {'id': 2, 'name': 'lemon','bgColor' : '#fee599'},
+           {'id': 3, 'name': 'strawberry', 'bgColor': '#e06666'},
+           {'id': 4, 'name': 'apple', 'bgColor' : '#b6d7a7'}
+         ]
+      }
+   }
+   onMoveUp = (key) => {
+      console.log(key, 'onMoveUp ---------->')
    }
 
-   onMoveUp() {
-      if (this.state.fruitList.id < 4)
-         this.setState({
-            count: alert(this.state.fruitList.id + 1)
-         });
-   }
-
-   onMoveDown() {
-      if (this.state.fruitList.id > 0)
-         this.setState({
-            count: alert(this.state.fruitList.id - 1)
-         });
+   onMoveDown = (key) => {
+      console.log(key, 'onMoveDown ---------->')
    }
 
    render() {
+      const { items } = this.state;
       return (
          <ul>
-           {this.props.items.map((item, key) =>
+           {items.map((item, key) =>
                <li key={key} style={{ backgroundColor: item.bgColor }}>
                   <div className="fruitsId">{ item.id }</div>
                   <div className="fruitsName">{ item.name }</div>
                   <div className="fruitsArrows">
-                     <span onClick={this.onMoveUp}>&#x25B2;</span>
-                     <span onClick={this.onMoveDown}>&#x25BC;</span>                    
+                     <span onClick={() => this.onMoveUp(key)}>&#x25B2;</span>
+                     <span onClick={() => this.onMoveDown(key)}>&#x25BC;</span>
                   </div>
-               </li>            
+               </li>
             )}
          </ul>
       );
