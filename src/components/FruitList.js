@@ -14,13 +14,22 @@ class FruitList extends Component {
    }
    onMoveUp = (key) => {
       if(key === 0) return;
-      console.log(key, 'onMoveUp ---------->')
+      const { items } = this.props;
+      const index = key - 1;
+      const itemAbove = items[index];
+      items[key - 1] = items[key];
+      items[key] = itemAbove;
+      this.setState({ items });
    }
 
    onMoveDown = (key) => {
       const { items } = this.props;
-      if(key === items.length) return;
-      console.log(key, 'onMoveDown ---------->')
+      if(key === items.length - 1) return;
+      const index = key + 1;
+      const itemBelow = items[index];
+      items[key + 1] = items[key];
+      items[key] = itemBelow;
+      this.setState({ items });
    }
 
    render() {
@@ -29,7 +38,7 @@ class FruitList extends Component {
          <ul>
            {items.map((item, key) =>
                <li key={key} style={{ backgroundColor: item.bgColor }}>
-                  <div className="fruitsId">{ item.id }</div>
+                  <div className="fruitsId">{ key + 1 }</div>
                   <div className="fruitsName">{ item.name }</div>
                   <div className="fruitsArrows">
                      <span onClick={() => this.onMoveUp(key)}>&#x25B2;</span>
